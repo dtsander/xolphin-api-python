@@ -19,7 +19,7 @@ class Request(object):
         result = Requests(self.client.get('requests', {'page': 1}))
         if not result.is_error():
             requests = result.requests
-            while result.page < result.pages:
+            while result.page > 0 and result.page < result.pages:
                 result = Requests(self.client.get('requests', {'page': result.page + 1}))
                 if result.is_error():
                     break
