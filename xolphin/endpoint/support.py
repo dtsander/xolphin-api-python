@@ -18,7 +18,7 @@ class Support(object):
         result = Products(self.client.get('products', {'page': 1}))
         if not result.is_error():
             products = result.products
-            while result.page < result.pages:
+            while result.page > 0 and result.page < result.pages:
                 result = Products(self.client.get('products', {'page': result.page + 1}))
                 if result.is_error():
                     break
